@@ -5,3 +5,8 @@
 [28-Aug-2023 07:02:58 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.2.34. in /home/pralonco/career.pralon.co.id/vendor/composer/platform_check.php on line 24
 [28-Aug-2023 07:03:02 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.2.34. in /home/pralonco/career.pralon.co.id/vendor/composer/platform_check.php on line 24
 [30-Aug-2023 02:20:30 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.4.33. in /home/pralonco/career.pralon.co.id/vendor/composer/platform_check.php on line 24
+[19-Dec-2023 07:48:20 UTC] PHP Warning:  require(/home/pralonco/career-pralon.co.id/vendor/autoload.php): Failed to open stream: No such file or directory in /home/pralonco/career-pralon.co.id/artisan on line 18
+[19-Dec-2023 07:48:20 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pralonco/career-pralon.co.id/vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/pralonco/career-pralon.co.id/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/pralonco/career-pralon.co.id/artisan on line 18
