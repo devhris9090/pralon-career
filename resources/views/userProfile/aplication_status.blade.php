@@ -21,8 +21,8 @@
                     </div>
                     <form action="{{ route('generate-profile-user-pdf') }}" method="post" class="form-application">
                         @csrf
-                        <input type="hidden" name="dummy_vacancy" value="{{ $applicant->vacancy->vacancy_name }}" data-vacancy_name="{{ $applicant->vacancy->vacancy_name }}">
-                        <input type="hidden" value="{{ $applicant->vacancy->vacancy_name }}" name="vacancy_name">
+                        {{-- <input type="hidden" name="dummy_vacancy" value="{{ $applicant->vacancy->vacancy_name }}" data-vacancy_name="{{ $applicant->vacancy->vacancy_name }}"> --}}
+                        <input type="hidden" value="{{ $applicant->vacancy->id_vacancy }}" name="id_vacancy">
                         <div class="btn-group btn-group-justified" role="group">
                                 <a href="#" class="btn btn-primary form-application-pdf" style="border-radius: 0px !important">Form Application</a>
                                 <a href="#" class="btn btn-info black" style="border-radius: 0px !important">Detail</a>

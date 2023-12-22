@@ -137,11 +137,6 @@
                             <hr style="margin-top: 0 !important; margin-bottom: 0 !important;">
                             <h5 style="margin-top: 0 !important; margin-bottom: 0 !important; font-size: .875em;">
                                 <small class="small-subtitle">
-                                    {{-- @if ($applicant != null)
-                                        {{ $applicant->id_vacancy }}
-                                    @else
-                                        {{ 'no data' }}
-                                    @endif --}}
                                     {{ $applicant_applied }}
                                 </small>
                             </h5>

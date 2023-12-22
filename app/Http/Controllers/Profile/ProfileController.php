@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -75,7 +76,7 @@ class ProfileController extends Controller
     public function generateUserToPdf(Request $request) {
         try {
             $dataPdf = [];
-            // dd($request->vacancy_name_applied);
+            // dd($request->id_vacancy);
             // dd($request->input());
             if (Auth::check()) {
                 $user = Profile::where('userid', '=', Auth::user()->userid)->first();
@@ -89,9 +90,14 @@ class ProfileController extends Controller
                 $skills = Skills::where('userid', '=', Auth::user()->userid)->latest()->get();
                 $families = collect(Families::where('userid', '=', Auth::user()->userid)->get());
                 $trachs = TrainingAchievements::where('userid', '=', Auth::user()->userid)->get();
-                // $emp_applicant = Applicants::where('userid', '=', Auth::user()->userid)->first();
                 $emp_applicant = Applicants::with('vacancy')->where('userid', '=', Auth::user()->userid)->first();
-
+                $applicant_applied = DB::table('employer_applicant')
+                ->where('userid', '=', 'user-64e6bc0736e58')
+                ->where('id_vacancy', '=', 'VAC_202012')
+                ->get();
+                    // dd($applicant_applied);
+                    // dd($request->id_vacancy);
+                    // dd(Auth::user()->userid);
                 $dataPdf = [
                     'user' => $user,
                     'applicant' => $emp_applicant,
@@ -100,7 +106,7 @@ class ProfileController extends Controller
                     'skills'=> $skills,
                     'family'=> $families,
                     'training_achievement' => $trachs,
-                    'applicant_applied' => $request->vacancy
+                    'applicant_applied' => $request->vacancy_name_applied
                 ];
             }
             ini_set('memory_limit', '2048M');
