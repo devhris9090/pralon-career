@@ -95,7 +95,7 @@ class ProfileController extends Controller
                 ->where('userid', '=', 'user-64e6bc0736e58')
                 ->where('id_vacancy', '=', 'VAC_202012')
                 ->get();
-                    dd($applicant_applied);
+                    // dd($applicant_applied);
                     // dd($request->id_vacancy);
                     // dd(Auth::user()->userid);
                 $dataPdf = [
