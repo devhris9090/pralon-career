@@ -1,0 +1,5 @@
+---
+deployment:
+	tasks:
+		- export DEPLOYPATH=/home/pralonco/career-pralon.co.id/public/
+		- /bin/cp -R * $DEPLOYPATH

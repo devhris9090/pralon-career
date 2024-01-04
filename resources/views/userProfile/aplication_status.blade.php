@@ -21,11 +21,10 @@
                     </div>
                     <form action="{{ route('generate-profile-user-pdf') }}" method="post" class="form-application">
                         @csrf
-                        {{-- <input type="hidden" name="dummy_vacancy" value="{{ $applicant->vacancy->vacancy_name }}" data-vacancy_name="{{ $applicant->vacancy->vacancy_name }}"> --}}
                         <input type="hidden" value="{{ $applicant->vacancy->id_vacancy }}" name="id_vacancy">
                         <div class="btn-group btn-group-justified" role="group">
-                                <a href="#" class="btn btn-primary form-application-pdf" style="border-radius: 0px !important">Form Application</a>
-                                <a href="#" class="btn btn-info black" style="border-radius: 0px !important">Detail</a>
+                                <a href="{{ route('profile-user-pdf', ['id_vacancy' => $applicant->vacancy->id_vacancy]) }}" class="btn btn-primary download-pdf" type="button" style="border-radius: 0px !important" id="{{ $applicant->vacancy->id_vacancy }}" data-vacancy_id="{{ $applicant->vacancy->id_vacancy }}">Form Application</a>
+                                <a href="#" class="btn btn-info black application_detail_modal" data-vacancy="{{ $applicant->vacancy->id_vacancy }}" style="border-radius: 0px !important" data-toggle="modal" data-target="#application_detail_modal">Detail</a>
                         </div>
                     </form>
                     
@@ -36,6 +35,7 @@
         @endforelse
     </div>
     </div>
+    @include('userProfile.form_application.application_detail_modal')
 @endsection
 
 @push('js')

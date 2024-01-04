@@ -78,8 +78,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/ApplyJob/{id}', [JobVacancyController::class, 'apply'])->name('job.apply');
     Route::post('/generate-profile-user-pdf', [ProfileController::class,'generateUserToPdf'])->name('generate-profile-user-pdf');
     // Route::get('/generate-profile-user-pdf', [ProfileController::class,'generateUserToPdf'])->name('generate-profile-user-pdf');
+    Route::get('/profile-user-pdf/{id_vacancy}', [ProfileController::class,'generateUserToPdfV2'])->name('profile-user-pdf');
     Route::get('/application-status', [ProfileController::class,'userApplicationStatus'])->name('application-status');
-
+    Route::get('/application-detail', [ProfileController::class,'detailApplicationUser'])->name('application-detail');
     // Define other protected routes here
 });
 Route::get('/email/verify', [LoginController::class, 'show'])->name('verification.notice');
