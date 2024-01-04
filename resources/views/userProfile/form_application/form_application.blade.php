@@ -67,6 +67,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            border-spacing: 0;
             table-layout:fixed;
         }
 
@@ -1504,100 +1505,59 @@
     <div class="row">
         <div class="column">
             <table>
-                <thead>
-                    <tr class="text-center">
-                        <th>
-                            <h6 class="h6-title">IDENTITAS PERUSAHAAN</h6>
-                            <small class="small-subtitle">
-                                <i>
-                                    Company Identity
-                                </i>
-                            </small>
-                        </th>
-                        <th>
-                            <h6 class="h6-title">MASA KERJA</h6>
-                            <small class="small-subtitle">
-                                <i>
-                                    Service Year
-                                </i>
-                            </small>
-                        </th>
-                        <th colspan="2">
-                            <h6 class="h6-title">KETERANGAN</h6>
-                            <small class="small-subtitle">
-                                <i>
-                                    Remarks
-                                </i>
-                            </small>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($experiences as $exp)
-                        <tr>
-                            <td class="text-in-table" rowspan="3">
-                                <p>Nama : {{ $exp->companyName }}</p>
-                                <p>Alamat : {{ $exp->companyAddress }}</p>
-                                <p>Telepon :</p>
-                                <p>Jenis Usaha :</p>
-                                <p>Atasan / Direktur :</p>
-                            </td>
-                            <td rowspan="3">
-                                {{ $exp->yosStart . ' - ' . $exp->yosEnd }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-in-table">
-                                <span class="top-left-text">
-                                    Jabatan : {{ $exp->posEnd }}
-                                </span>
-                            </td>
-                            <td class="text-in-table">
-                                <span class="top-left-text">
-                                    Alasan Pengunduran Diri : {{ $exp->leavingReason }}
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-in-table">
-                                <span class="top-left-text">
-                                    Gaji Perbulan : {{"Rp." . number_format($exp->salaryEnd, 0, ",", ".") }}
-                                </span>
-                            </td>
-                            <td class="text-in-table">
-                                <span class="top-left-text">
-                                    Jumlah Karyawan :
-                                </span>
-                            </td>
-                        </tr>
-                    @empty
-                        
+                <tr class="text-center">
+                    <th>
+                        <h6 class="h6-title">IDENTITAS PERUSAHAAN</h6>
+                        <small class="small-subtitle">
+                            <i>
+                                Company Identity
+                            </i>
+                        </small>
+                    </th>
+                    <th>
+                        <h6 class="h6-title">MASA KERJA</h6>
+                        <small class="small-subtitle">
+                            <i>
+                                Service Year
+                            </i>
+                        </small>
+                    </th>
+                    <th colspan="2">
+                        <h6 class="h6-title">KETERANGAN</h6>
+                        <small class="small-subtitle">
+                            <i>
+                                Remarks
+                            </i>
+                        </small>
+                    </th>
+                </tr>
+                @forelse ($experiences as $exp)
                     <tr>
-                        <td class="text-in-table" rowspan="3">
-                            <p>Nama :</p>
-                            <p>Alamat :</p>
+                        <td rowspan="2" class="text-in-table">
+                            <p>Nama : {{ $exp->companyName }}</p>
+                            <p>Alamat : {{ $exp->companyAddress }}</p>
                             <p>Telepon :</p>
                             <p>Jenis Usaha :</p>
                             <p>Atasan / Direktur :</p>
                         </td>
-                        <td rowspan="3"></td>
-                    </tr>
-                    <tr>
+                        <td rowspan="2">
+                            {{ $exp->yosStart . ' - ' . $exp->yosEnd }}
+                        </td>
                         <td class="text-in-table">
                             <span class="top-left-text">
-                                Jabatan :
+                                Jabatan : {{ $exp->posEnd }}
                             </span>
                         </td>
                         <td class="text-in-table">
                             <span class="top-left-text">
-                                Alasan Pengunduran Diri :
+                                Alasan Pengunduran Diri : {{ $exp->leavingReason }}
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-in-table">
                             <span class="top-left-text">
-                                Gaji Perbulan :
+                                Gaji Perbulan : {{"Rp." . number_format($exp->salaryEnd, 0, ",", ".") }}
                             </span>
                         </td>
                         <td class="text-in-table">
@@ -1606,76 +1566,40 @@
                             </span>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-in-table" rowspan="3">
-                            <p>Nama :</p>
-                            <p>Alamat :</p>
-                            <p>Telepon :</p>
-                            <p>Jenis Usaha :</p>
-                            <p>Atasan / Direktur :</p>
-                        </td>
-                        <td rowspan="3"></td>
-                    </tr>
-                    <tr>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Jabatan :
-                            </span>
-                        </td>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Alasan Pengunduran Diri :
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Gaji Perbulan :
-                            </span>
-                        </td>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Jumlah Karyawan :
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-in-table" rowspan="3">
-                            <p>Nama :</p>
-                            <p>Alamat :</p>
-                            <p>Telepon :</p>
-                            <p>Jenis Usaha :</p>
-                            <p>Atasan / Direktur :</p>
-                        </td>
-                        <td rowspan="3"></td>
-                    </tr>
-                    <tr>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Jabatan :
-                            </span>
-                        </td>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Alasan Pengunduran Diri :
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Gaji Perbulan :
-                            </span>
-                        </td>
-                        <td class="text-in-table">
-                            <span class="top-left-text">
-                                Jumlah Karyawan :
-                            </span>
-                        </td>
-                    </tr>
-                    @endforelse
-                </tbody>
+                @empty
+                <tr>
+                    <td rowspan="2" class="text-in-table">
+                        <p>Nama : </p>
+                        <p>Alamat :</p>
+                        <p>Telepon :</p>
+                        <p>Jenis Usaha :</p>
+                        <p>Atasan / Direktur :</p>
+                    </td>
+                    <td rowspan="2"></td>
+                    <td class="text-in-table">
+                        <span class="top-left-text">
+                            Jabatan :
+                        </span>
+                    </td>
+                    <td class="text-in-table">
+                        <span class="top-left-text">
+                            Alasan Pengunduran Diri :
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-in-table">
+                        <span class="top-left-text">
+                            Gaji Perbulan :
+                        </span>
+                    </td>
+                    <td class="text-in-table">
+                        <span class="top-left-text">
+                            Jumlah Karyawan :
+                        </span>
+                    </td>
+                </tr>
+                @endforelse
             </table>
         </div>
     </div>
