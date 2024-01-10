@@ -74,7 +74,12 @@
 
 	
 
-	
+	<style>
+		.application_detail_modal {
+			background-color: #d2d2d2 !important;
+			color: #6a6a6a !important;
+		}
+	</style>	
 
 
 
