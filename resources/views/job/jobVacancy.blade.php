@@ -25,7 +25,7 @@
                         <p class="card-text" style="margin: 10px 0; overflow: hidden; text-overflow: ellipsis; max-height: 3em;">{{ $vacancy->vacancy_detail }}</p>
                     </div>
                     @if ($vacancy->disabled !=null)
-                        <a href="#" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" {{ $vacancy->disabled."='true'" }}>Apply Now</a>
+                        <a href="#" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" {{ $vacancy->disabled."='true'" }}>Already Applied</a>
                     @else 
                         <a href="#" data-toggle="modal" data-target="#applyJob-{{ $vacancy->id_vacancy }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px">Apply Now</a>
 
