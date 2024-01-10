@@ -1,5 +1,5 @@
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () {x
         $('.application_detail_modal').on('click', function(e) {
             let id_vacancy = $(this).data('vacancy')
             $.ajax({

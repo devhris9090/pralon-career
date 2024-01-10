@@ -10,7 +10,7 @@ use App\Models\Vacancies;
 use App\Models\ContactInformation;
 use App\Models\Educations;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class JobVacancyController extends Controller
 {
@@ -19,12 +19,18 @@ class JobVacancyController extends Controller
         if (Auth::check()) {
             $data = Profile::where('userid', '=', Auth::user()->userid)->first();
         }
-
-        $vacancies = Vacancies::where('status', '=', '1')->paginate(21); // Display 9 vacancies per page
         
+        $user_id = Auth::user()->userid;
+        $sub_query = "(SELECT 'applied' FROM pralonco_career.employer_applicant
+        WHERE userid =".Auth::user()->userid." and id_vacancy = a.id_vacancy) as applied";
+        $vacancies = DB::table('company_vacancy AS a')
+                    ->select('a.id_vacancy','a.vacancy_name','a.company_name','a.banner','a.status','a.vacancy_detail','a.reqDegree', 'a.reqMajor')
+                    ->addSelect(DB::raw('(SELECT "disabled" FROM pralonco_career.employer_applicant
+                    WHERE userid = '."'$user_id'".' and id_vacancy = a.id_vacancy) as disabled'))->paginate(21);
+
         $contactInfo = ContactInformation::first();
 
-
+        // return view('job.jobVacancy', compact('data', 'contactInfo', 'vacancies', 'applicant'));
         return view('job.jobVacancy', compact('data', 'contactInfo', 'vacancies'));
     }
 

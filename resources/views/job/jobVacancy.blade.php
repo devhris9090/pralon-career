@@ -10,6 +10,9 @@
         @endif
 
         <div class="row">
+            {{-- @php
+                dd($applicant);
+            @endphp --}}
             @foreach($vacancies as $vacancy)
             <div class="col-md-4">
                 <div class="card" style="border: 1px solid #e0e0e0; margin-bottom: 20px; flex-direction: column;">
@@ -21,7 +24,12 @@
                         <p class="card-subtitle mb-2 text-muted" style="font-size: 1em; color: #888;">{{ $vacancy->company_name }}</p>
                         <p class="card-text" style="margin: 10px 0; overflow: hidden; text-overflow: ellipsis; max-height: 3em;">{{ $vacancy->vacancy_detail }}</p>
                     </div>
-                    <a href="#" data-toggle="modal" data-target="#applyJob-{{ $vacancy->id_vacancy }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px">Apply Now</a>
+                    @if ($vacancy->disabled !=null)
+                        <a href="#" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" {{ $vacancy->disabled."='true'" }}>Already Applied</a>
+                    @else 
+                        <a href="#" data-toggle="modal" data-target="#applyJob-{{ $vacancy->id_vacancy }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px">Apply Now</a>
+
+                    @endif
                 </div>
             </div>
 
