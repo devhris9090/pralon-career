@@ -24,7 +24,12 @@
                         <p class="card-subtitle mb-2 text-muted" style="font-size: 1em; color: #888;">{{ $vacancy->company_name }}</p>
                         <p class="card-text" style="margin: 10px 0; overflow: hidden; text-overflow: ellipsis; max-height: 3em;">{{ $vacancy->vacancy_detail }}</p>
                     </div>
-                    <a href="#" data-toggle="modal" data-target="#applyJob-{{ $vacancy->id_vacancy }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" {{ $vacancy->disabled."='true'" }}>Apply Now</a>
+                    @if ($vacancy->disabled !=null)
+                        <a href="#" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" {{ $vacancy->disabled."='true'" }}>Apply Now</a>
+                    @else 
+                        <a href="#" data-toggle="modal" data-target="#applyJob-{{ $vacancy->id_vacancy }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px">Apply Now</a>
+
+                    @endif
                 </div>
             </div>
 
