@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Job;
 
 use App\Http\Controllers\Controller;
 use App\Models\Applicants;
+use App\Models\Families;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
 use App\Models\Vacancies;
 use App\Models\ContactInformation;
 use App\Models\Educations;
+use App\Models\Experiences;
+use App\Models\Skills;
+use App\Models\TrainingAchievements;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +22,24 @@ class JobVacancyController extends Controller
         $data = null;
         if (Auth::user()) {
             $data = Profile::where('userid', '=', Auth::user()->userid)->first();
+            $family = Families::where('userid', '=', Auth::user()->userid)->first();
+            $experience = Experiences::where('userid', '=', Auth::user()->userid)->first();
+            $skill = Skills::where('userid', '=', Auth::user()->userid)->first();
+            $trach = TrainingAchievements::where('userid', '=', Auth::user()->userid)->first();
+            $edu = Educations::where('userid', '=', Auth::user()->userid)->first();
+        }
+
+        $user_id = Auth::user()->userid;
+        $sub_query = "(SELECT 'applied' FROM pralonco_career.employer_applicant
+        WHERE userid =".Auth::user()->userid." and id_vacancy = a.id_vacancy) as applied";
+        $vacancies = DB::table('company_vacancy AS a')
+                    ->select('a.id_vacancy','a.vacancy_name','a.company_name','a.banner','a.status','a.vacancy_detail','a.reqDegree', 'a.reqMajor')
+                    ->addSelect(DB::raw('(SELECT "disabled" FROM pralonco_career.employer_applicant
+                    WHERE userid = '."'$user_id'".' and id_vacancy = a.id_vacancy) as disabled'))->paginate(21);
+
+        $contactInfo = ContactInformation::first();
+
+        return view('job.jobVacancy', compact('data', 'contactInfo', 'vacancies', 'family', 'experience', 'skill', 'trach', 'edu'));
             $user_id = Auth::user()->userid;
             $sub_query = "(SELECT 'applied' FROM pralonco_career.employer_applicant
             WHERE userid =".Auth::user()->userid." and id_vacancy = a.id_vacancy) as applied";
