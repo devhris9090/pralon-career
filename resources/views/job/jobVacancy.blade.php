@@ -24,11 +24,14 @@
                         <p class="card-subtitle mb-2 text-muted" style="font-size: 1em; color: #888;">{{ $vacancy->company_name }}</p>
                         <p class="card-text" style="margin: 10px 0; overflow: hidden; text-overflow: ellipsis; max-height: 3em;">{{ $vacancy->vacancy_detail }}</p>
                     </div>
-                    @if ($vacancy->disabled !=null)
-                        <a href="#" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" {{ $vacancy->disabled."='true'" }}>Already Applied</a>
-                    @else 
-                        <a href="#" data-toggle="modal" data-target="#applyJob-{{ $vacancy->id_vacancy }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px">Apply Now</a>
-
+                    @if ($family == null || $education == null || $experience == null || $skill == null || $trach == null)
+                        <a href="{{ route('profile') }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" disabled>Please Complete your profile</a>
+                    @else
+                        @if ($vacancy->disabled !=null)
+                            <a href="#" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px" {{ $vacancy->disabled."='true'" }}>Already Applied</a>
+                        @else
+                            <a href="#" data-toggle="modal" data-target="#applyJob-{{ $vacancy->id_vacancy }}" class="btn btn-primary" style="display: block; flex-direction: column; border-radius:0px">Apply Now</a>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -50,7 +53,7 @@
 
 
 
-        
+
 
     </div>
 </div>
