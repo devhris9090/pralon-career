@@ -129,7 +129,6 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-
         return redirect('/email/verify')->with('success', 'Registration successful.');
     }
 
